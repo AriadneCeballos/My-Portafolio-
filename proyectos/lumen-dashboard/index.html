@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumen · Finanzas personales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="#resumen"><span class="mark"></span>Lumen</a>
+    <nav id="nav">
+      <a href="#resumen" class="on"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-3H4zM14 8h6V4h-6z"/></svg>Resumen</a>
+      <a href="#movimientos"><svg viewBox="0 0 24 24"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>Movimientos</a>
+      <a href="#presupuestos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 12V4M12 12l6 4"/></svg>Presupuestos</a>
+      <a href="#metas"><svg viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Metas</a>
+    </nav>
+    <div class="me"><div class="av">SR</div><div><b>Sofía Ramírez</b><small>Plan Premium</small></div></div>
+  </aside>
+
+  <main>
+    <header class="top">
+      <div><small id="today"></small><h1>Hola, Sofía</h1></div>
+      <div class="actions">
+        <button class="ghost icon" id="theme" aria-label="Cambiar tema"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+        <button class="btn" id="new">+ Nuevo movimiento</button>
+      </div>
+    </header>
+
+    <section id="resumen" class="grid">
+      <article class="card hero">
+        <div class="chip"></div>
+        <small>Balance total</small>
+        <div class="big" id="bal">$0</div>
+        <div class="num">•••• •••• •••• 4821</div>
+      </article>
+      <article class="card kpi"><small>Ingresos del mes</small><b id="inc">$0</b><span id="dinc" class="delta"></span></article>
+      <article class="card kpi"><small>Gastos del mes</small><b id="exp">$0</b><span id="dexp" class="delta"></span></article>
+      <article class="card kpi"><small>Tasa de ahorro</small><b id="sav">0%</b><span class="delta muted">del ingreso mensual</span></article>
+
+      <article class="card wide"><div class="ch"><h2>Ingresos vs. gastos</h2><small>Últimos 6 meses</small></div><div class="chart"><canvas id="c1"></canvas></div></article>
+      <article class="card side2"><div class="ch"><h2>Gastos por categoría</h2><b id="donutTot"></b></div><div class="chart"><canvas id="c2"></canvas></div></article>
+    </section>
+
+    <section class="grid" id="movimientos">
+      <article class="card wide2">
+        <div class="ch"><h2>Movimientos</h2>
+          <div class="tools"><input id="q" type="search" placeholder="Buscar…" aria-label="Buscar"><select id="fc" aria-label="Categoría"></select><button class="ghost sm" id="csv">Exportar CSV</button></div>
+        </div>
+        <div class="tablewrap"><table><thead><tr><th>Descripción</th><th>Categoría</th><th>Fecha</th><th class="r">Monto</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+      </article>
+      <article class="card side3" id="presupuestos"><div class="ch"><h2>Presupuestos</h2><small>Este mes</small></div><div id="budgets"></div><p class="hint">Toca una categoría para editar su límite.</p></article>
+    </section>
+
+    <section id="metas"><div class="ch pad"><h2>Metas de ahorro</h2></div><div class="goals" id="goals"></div></section>
+    <footer class="foot"> © Lumen All rights reserved.</footer>
+  </main>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" id="form">
+    <h2>Nuevo movimiento</h2>
+    <div class="seg"><label><input type="radio" name="type" value="-1" checked><span>Gasto</span></label><label><input type="radio" name="type" value="1"><span>Ingreso</span></label></div>
+    <label>Monto<input name="amount" type="number" min="1" step="0.01" required placeholder="0.00"></label>
+    <label>Descripción<input name="desc" required maxlength="40" placeholder="Ej. Supermercado"></label>
+    <div class="r2"><label>Categoría<select name="cat" id="catSel"></select></label><label>Fecha<input name="date" type="date" required></label></div>
+    <div class="row-btns"><button type="button" class="ghost" id="cancel">Cancelar</button><button class="btn">Guardar</button></div>
+  </form>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
