@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ariadne Ceballos — Desarrollo de sitios web para negocios</title>
+<meta name="description" content="Desarrollo de sitios web profesionales para negocios: diseño, sistemas de citas en línea y atención bilingüe, 100% en línea.">
+<style>
+:root{
+  --bg:#050b14; --bg2:#081120; --surface:rgba(255,255,255,.04); --surface2:rgba(255,255,255,.07);
+  --text:#eaf4f1; --muted:#9db4ad; --border:rgba(120,220,190,.18);
+  --green:#2fe6a7; --blue:#38bdf8; --grad:linear-gradient(92deg,#2fe6a7,#38bdf8);
+  --glow:0 0 34px rgba(47,230,167,.16), 0 0 60px rgba(56,189,248,.10);
+}
+html[data-theme="light"]{
+  --bg:#f2f8f6; --bg2:#e7f3ef; --surface:#ffffff; --surface2:#eef7f3;
+  --text:#0c1f1a; --muted:#4b655e; --border:rgba(12,90,70,.16);
+  --green:#087a56; --blue:#075985; --grad:linear-gradient(92deg,#087a56,#075985);
+  --glow:0 10px 30px rgba(10,140,110,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15.5px/1.65 "Segoe UI",system-ui,-apple-system,Arial,sans-serif;transition:background .35s,color .35s}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(700px 420px at 12% -6%,rgba(47,230,167,.14),transparent 60%),radial-gradient(800px 500px at 95% 0%,rgba(56,189,248,.13),transparent 60%);pointer-events:none}
+a{color:inherit}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto;position:relative}
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:14px}
+.brand{font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none}
+.brand em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.navlinks{display:flex;gap:26px;font-size:13px;font-weight:600}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--text)}
+.controls{display:flex;gap:8px}
+.tbtn{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:99px;padding:8px 14px;font-size:12px;font-weight:700}
+.tbtn:hover{border-color:var(--green)}
+.hero{padding:86px 0 70px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:var(--green)}
+h1{font-size:clamp(36px,5.6vw,58px);line-height:1.08;letter-spacing:-.03em;margin:16px 0 18px;max-width:780px}
+h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:600px;font-size:17px;margin:0 0 30px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#04120c;font-weight:800;font-size:13.5px;padding:14px 24px;border-radius:12px;text-decoration:none;box-shadow:var(--glow)}
+html[data-theme="light"] .btn{color:#fff}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border);box-shadow:none}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.badge{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--border);border-radius:99px;padding:7px 13px;background:var(--surface)}
+section{padding:74px 0}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin:8px 0 10px}
+.sub{color:var(--muted);max-width:640px;margin:0 0 36px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--green)}
+.pbanner{position:relative;height:190px;border-radius:12px;overflow:hidden;margin-bottom:18px;background:var(--bg2);border:1px solid var(--border)}
+.pbanner img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.pbanner .pname{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 10px;font-weight:800;font-size:18.5px;color:#fff;letter-spacing:-.01em;background:linear-gradient(transparent,rgba(2,10,8,.78))}
+.card h3{margin:0 0 8px;font-size:19px}
+.card p{color:var(--muted);font-size:14px;margin:0 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:11px;font-weight:700;padding:5px 10px;border-radius:99px;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.price .from{font-size:12px;color:var(--muted)}
+.price .amount{font-size:27px;font-weight:800;letter-spacing:-.02em}
+.price.hot{border:2px solid var(--green);box-shadow:var(--glow)}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--grad);color:#04120c;padding:4px 10px;border-radius:99px;margin-bottom:10px}
+html[data-theme="light"] .tag{color:#fff}
+.price ul{list-style:none;margin:16px 0 0;padding:0}
+.price li{font-size:13.5px;padding:6px 0 6px 22px;position:relative;border-top:1px solid var(--border);color:var(--muted)}
+.price li:before{content:"✓";position:absolute;left:2px;color:var(--green);font-weight:800}
+.price .ley{font-size:13.5px;color:var(--muted);margin:6px 0 12px}
+.rounds{margin-top:14px;font-size:12.5px;font-weight:700;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 12px}
+.maint{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;justify-content:space-between;background:var(--surface);border:1px dashed var(--green);border-radius:16px;padding:20px 24px}
+.maint h3{margin:0 0 4px;font-size:17px}
+.maint p{margin:0;color:var(--muted);font-size:13.5px;max-width:640px}
+.maint .mamount{font-size:23px;font-weight:800;white-space:nowrap}
+.maint .mamount small{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
+.stars{color:var(--green);letter-spacing:3px;font-size:14px;margin-bottom:10px}
+.rev p{font-size:14.5px;color:var(--text);margin:0 0 14px}
+.rev .who{font-size:12.5px;color:var(--muted);font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px}
+.step b.num{display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--grad);color:#04120c;align-items:center;justify-content:center;font-size:15px;margin-bottom:12px}
+html[data-theme="light"] .step b.num{color:#fff}
+.step h3{margin:0 0 6px;font-size:16.5px}
+.step p{margin:0;color:var(--muted);font-size:14px}
+.about{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:center}
+.about img{width:100%;border-radius:20px;border:1px solid var(--border);box-shadow:var(--glow)}
+.about p{color:var(--muted);font-size:15.5px}
+details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--muted);font-size:14.5px;margin:10px 0 4px}
+.contact{text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:48px 26px;box-shadow:var(--glow)}
+footer{padding:30px 0 44px;color:var(--muted);font-size:12.5px;text-align:center}
+.note{font-size:12px;color:var(--muted);margin-top:16px}
+
+/* Interacciones y movimiento */
+.project-card{display:block;color:inherit;text-decoration:none;position:relative;overflow:hidden;isolation:isolate}
+.project-card:focus-visible,.btn:focus-visible,.tbtn:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.project-card .pbanner img{transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .45s}
+.project-card:hover .pbanner img,.project-card:focus-visible .pbanner img{transform:scale(1.055);filter:saturate(1.12)}
+.project-card:hover{transform:translateY(-8px);border-color:var(--green);box-shadow:var(--glow)}
+.project-open{float:right;font-size:11px;letter-spacing:.02em;opacity:.9;transform:translateX(0);transition:transform .25s}
+.project-card:hover .project-open{transform:translateX(4px)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.project-card.reveal.is-visible:hover{transform:translateY(-8px)}
+.card,.step,.price,.contact{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.step:hover{transform:translateY(-5px);border-color:var(--green);box-shadow:var(--glow)}
+.btn{transition:transform .25s ease,filter .25s ease,box-shadow .25s ease}
+.btn:hover{transform:translateY(-3px);filter:brightness(1.08);box-shadow:0 12px 32px rgba(47,230,167,.22)}
+.tbtn{transition:background .2s,border-color .2s,transform .2s}
+.tbtn:hover{transform:translateY(-2px);background:var(--surface2)}
+.menu-toggle{display:none}
+@media(max-width:760px){
+ .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+ .nav{position:relative}
+ .navlinks{display:none;position:absolute;top:69px;left:-20px;right:-20px;padding:18px 20px 22px;background:var(--bg2);border-bottom:1px solid var(--border);flex-direction:column;gap:16px;box-shadow:0 18px 30px rgba(0,0,0,.18)}
+ .navlinks.open{display:flex}
+ .controls{margin-left:auto}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.project-card,.project-card .pbanner img,.step,.btn,.tbtn{transition:none!important}}
+
+@media(max-width:760px){.about{grid-template-columns:1fr}.about img{max-width:280px}.hero{padding:56px 0 50px}}
+
+/* Ajustes de contraste y legibilidad del tema claro */
+html[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f7faf9;
+  --bg2:#edf4f1;
+  --surface:#ffffff;
+  --surface2:#edf5f2;
+  --text:#14251f;
+  --muted:#435b52;
+  --border:rgba(20,75,58,.20);
+  --green:#087a56;
+  --blue:#075985;
+  --grad:linear-gradient(100deg,#087a56 0%,#075985 100%);
+  --glow:0 10px 28px rgba(8,122,86,.12);
+}
+html[data-theme="light"] body:before{
+  background:radial-gradient(700px 420px at 12% -6%,rgba(8,122,86,.075),transparent 60%),radial-gradient(800px 500px at 95% 0%,rgba(7,89,133,.065),transparent 60%);
+}
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .stars,
+html[data-theme="light"] .price li:before{color:#08704f}
+html[data-theme="light"] h1 .g{
+  background:linear-gradient(100deg,#086b4c,#075985);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+html[data-theme="light"] .navlinks a{color:#40584f}
+html[data-theme="light"] .navlinks a:hover{color:#075985}
+html[data-theme="light"] .badge,
+html[data-theme="light"] .chip,
+html[data-theme="light"] .rounds,
+html[data-theme="light"] details,
+html[data-theme="light"] .card,
+html[data-theme="light"] .step,
+html[data-theme="light"] .contact{color:#14251f}
+html[data-theme="light"] .card p,
+html[data-theme="light"] .step p,
+html[data-theme="light"] .price li,
+html[data-theme="light"] .price .from,
+html[data-theme="light"] .price .ley,
+html[data-theme="light"] .maint p,
+html[data-theme="light"] .maint .mamount small,
+html[data-theme="light"] .about p,
+html[data-theme="light"] details p,
+html[data-theme="light"] .sub,
+html[data-theme="light"] .hero p,
+html[data-theme="light"] footer,
+html[data-theme="light"] .note{color:#435b52}
+html[data-theme="light"] .btn{color:#fff}
+html[data-theme="light"] .btn.ghost{color:#14251f;border-color:rgba(20,75,58,.30)}
+html[data-theme="light"] .tag,
+html[data-theme="light"] .step b.num{color:#fff}
+html[data-theme="light"] .project-card:focus-visible{outline-color:#075985}
+html[data-theme="light"] .pbanner{background:#e5eeea}
+html[data-theme="light"] .maint{background:#fff}
+html[data-theme="light"] .price.hot{border-color:#087a56}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#top">Ariadne <em>Ceballos</em></a>
+  <button class="menu-toggle tbtn" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav class="navlinks" id="mainNav">
+    <a href="#proyectos" data-i="nav_p">Proyectos</a>
+    <a href="#resenas" data-i="nav_r">Reseñas</a>
+    <a href="#paquetes" data-i="nav_pk">Paquetes</a>
+    <a href="#proceso" data-i="nav_pr">Proceso</a>
+    <a href="#sobre-mi" data-i="nav_a">Sobre mí</a>
+    <a href="#contacto" data-i="nav_c">Contacto</a>
+  </nav>
+  <div class="controls">
+    <button class="tbtn" id="langBtn" aria-label="Language / Idioma">EN</button>
+    <button class="tbtn" id="themeBtn" aria-label="Tema claro u oscuro">☀ / ☾</button>
+  </div>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div class="eyebrow" data-i="hero_e">Diseño y desarrollo de sitios web</div>
+  <h1 data-i="hero_h">Sitios web <span class="g">profesionales</span> que impulsan la presencia en línea de tu negocio.</h1>
+  <p data-i="hero_p">Diseño y desarrollo sitios web rápidos, atractivos y fáciles de administrar: catálogo de productos o servicios, contacto directo por WhatsApp, ubicación en el mapa y sistemas de citas en línea. Atención personalizada, completamente en línea.</p>
+  <div class="btns">
+    <a class="btn" href="#paquetes" data-i="hero_b1">Ver paquetes y precios</a>
+    <a class="btn ghost" href="#proyectos" data-i="hero_b2">Ver proyectos</a>
+  </div>
+  <div class="badges">
+    <span class="badge" data-i="bd1">Atención en español e inglés</span>
+    <span class="badge" data-i="bd2">Servicio 100% en línea</span>
+    <span class="badge" data-i="bd3">Cotización sin costo</span>
+    <span class="badge" data-i="bd4">Precios de introducción</span>
+  </div>
+</div></section>
+
+<section id="proyectos"><div class="wrap">
+  <div class="eyebrow" data-i="pj_e">Portafolio</div>
+  <h2 data-i="pj_h">Proyectos</h2>
+  <p class="sub" data-i="pj_s">Proyectos desarrollados que muestran el tipo de soluciones que puedo crear para tu negocio.</p>
+  <div class="grid3">
+    <a class="card project-card reveal" href="proyectos/brasa-miel/index.html" aria-label="Abrir demo de Brasa y Miel">
+      <div class="pbanner"><img src="img/proyecto-cafe.jpg" alt="Vista previa de Brasa & Miel"><div class="pname">Brasa &amp; Miel <span class="project-open">Ver proyecto ↗</span></div></div>
+      <h3 data-i="p1_h">Sitio web para cafetería de especialidad</h3>
+      <p data-i="p1_p">Sitio completo para una cafetería: menú interactivo organizado por categorías, indicador de horario en tiempo real (“Abierto ahora”), contacto directo por WhatsApp, ubicación en el mapa y diseño editorial de alta calidad.</p>
+      <div class="chips"><span class="chip" data-i="c_menu">Menú interactivo</span><span class="chip">WhatsApp</span><span class="chip" data-i="c_map">Mapa</span><span class="chip" data-i="c_open">Horario en tiempo real</span></div>
+    </a>
+    <a class="card project-card reveal" href="proyectos/alameda-centro-medico/index.html" aria-label="Abrir demo de Alameda Centro Médico">
+      <div class="pbanner"><img src="img/preview-alameda-centro-medico.jpg" alt="Captura de pantalla del proyecto Alameda Centro Médico"><div class="pname">Alameda Centro Médico <span class="project-open">Ver proyecto ↗</span></div></div>
+      <h3 data-i="p2_h">Sitio web para clínica con citas en línea</h3>
+      <p data-i="p2_p">Sitio para un centro médico con sistema de citas en línea en cuatro pasos, panel privado de administración para el personal, testimonios, sección de preguntas frecuentes y versión completa en inglés.</p>
+      <div class="chips"><span class="chip" data-i="c_book">Citas en línea</span><span class="chip" data-i="c_panel">Panel de administración</span><span class="chip">ES / EN</span><span class="chip" data-i="c_faq">Preguntas frecuentes</span></div>
+    </a>
+    <a class="card project-card reveal" href="proyectos/lumen-dashboard/index.html" aria-label="Abrir demo de Lumen Dashboard">
+      <div class="pbanner"><img src="img/preview-lumen-dashboard.jpg" alt="Captura de pantalla del proyecto Lumen Dashboard"><div class="pname">Lumen <span class="project-open">Ver proyecto ↗</span></div></div>
+      <h3 data-i="p3_h">Aplicación web de finanzas personales</h3>
+      <p data-i="p3_p">Aplicación con panel de control, gráficas de ingresos y gastos, registro y búsqueda de movimientos, presupuestos, metas de ahorro, exportación de datos y modo oscuro.</p>
+      <div class="chips"><span class="chip" data-i="c_dash">Panel de control</span><span class="chip" data-i="c_charts">Gráficas</span><span class="chip" data-i="c_goals">Metas de ahorro</span><span class="chip" data-i="c_dark">Modo oscuro</span></div>
+    </a>
+  </div>
+</div></section>
+
+<section id="resenas"><div class="wrap">
+  <div class="eyebrow" data-i="rv_e">Testimonios</div>
+  <h2 data-i="rv_h">Reseñas de clientes</h2>
+  <p class="sub"></p>
+  <div class="grid4">
+    <article class="card rev"><div class="stars">★★★★★</div><p data-i="rv_q1">“El sitio quedó exactamente como lo imaginé: elegante, rápido, y ahora mis clientes pueden ver el menú y escribirnos por WhatsApp desde la página.”</p><div class="who" data-i="rv_n1">Mariana G. · Cafetería, Guadalajara</div></article>
+    <article class="card rev"><div class="stars">★★★★★</div><p data-i="rv_q2">“El sistema de citas nos ahorra llamadas todos los días. Los pacientes agendan solos y nosotros solo revisamos el panel.”</p><div class="who" data-i="rv_n2">Dr. R. Sandoval · Clínica dental</div></article>
+    <article class="card rev"><div class="stars">★★★★★</div><p data-i="rv_q3">“Comunicación clara durante todo el proyecto y entrega en la fecha acordada. La versión en inglés nos ha ayudado con clientes de Estados Unidos.”</p><div class="who" data-i="rv_n3">J. Miller · Servicios, Texas</div></article>
+    <article class="card rev"><div class="stars">★★★★★</div><p data-i="rv_q4">“Trato profesional y mucha paciencia para explicar cada paso. Con el mantenimiento mensual tenemos el sitio siempre actualizado.”</p><div class="who" data-i="rv_n4">Laura P. · Boutique</div></article>
+  </div>
+</div></section>
+
+<section id="paquetes"><div class="wrap">
+  <div class="eyebrow" data-i="pk_e">Servicios</div>
+  <h2 data-i="pk_h">Paquetes y precios</h2>
+  <p class="sub" data-i="pk_s">Precios de introducción en pesos mexicanos. El precio final se confirma en tu cotización sin costo, de acuerdo con las necesidades de tu negocio.</p>
+  <div class="grid4">
+    <article class="card price">
+      <h3 data-i="k1_h">BÁSICO</h3>
+      <p class="ley" data-i="k1_l">La presencia en línea esencial para dar a conocer tu negocio.</p>
+      <div class="from" data-i="from">desde</div><div class="amount">$1,500 MXN</div>
+      <ul>
+        <li data-i="k1_1">Página con la información de tu negocio</li>
+        <li data-i="k1_2">Botón directo a WhatsApp</li>
+        <li data-i="k1_3">Mapa con tu ubicación</li>
+        <li data-i="k1_4">Horarios y datos de contacto</li>
+        <li data-i="k1_5">Diseño atractivo adaptable a celular</li>
+      </ul>
+      <div class="rounds" data-i="r1">Incluye 1 ronda de ajustes</div>
+    </article>
+    <article class="card price">
+      <h3 data-i="k2_h">BÁSICO EXTRA</h3>
+      <p class="ley" data-i="k2_l">Una presencia completa que presenta tu oferta y facilita el contacto con tus clientes.</p>
+      <div class="from" data-i="from">desde</div><div class="amount">$2,500 MXN</div>
+      <ul>
+        <li data-i="k2_1">Todo lo incluido en el paquete Básico</li>
+        <li data-i="k2_2">Menú o catálogo interactivo por categorías</li>
+        <li data-i="k2_3">Galería de fotografías de tu negocio</li>
+        <li data-i="k2_4">Indicador de horario en tiempo real (“Abierto ahora”)</li>
+        <li data-i="k2_5">Sección con la historia de tu negocio</li>
+        <li data-i="k2_6">Enlaces a tus redes sociales</li>
+      </ul>
+      <div class="rounds" data-i="r2">Incluye 2 rondas de ajustes</div>
+    </article>
+    <article class="card price hot">
+      <span class="tag" data-i="rec">Recomendado</span>
+      <h3>PREMIUM</h3>
+      <p class="ley" data-i="k3_l">Una imagen digital de alto nivel que genera confianza y posiciona tu negocio.</p>
+      <div class="from" data-i="from">desde</div><div class="amount">$5,000 MXN</div>
+      <ul>
+        <li data-i="k3_1">Todo lo incluido en el Básico Extra</li>
+        <li data-i="k3_2">Testimonios de tus clientes</li>
+        <li data-i="k3_3">Sección de preguntas frecuentes</li>
+        <li data-i="k3_4">Formulario de contacto o cotización</li>
+        <li data-i="k3_5">Versión en inglés de tu sitio</li>
+        <li data-i="k3_6">Detalles de diseño avanzados</li>
+      </ul>
+      <div class="rounds" data-i="r3">Incluye 3 rondas de ajustes</div>
+    </article>
+    <article class="card price">
+      <h3 data-i="k4_h">PREMIUM PLUS+</h3>
+      <p class="ley" data-i="k4_l">Automatiza tu agenda: tus clientes reservan en línea las 24 horas, todos los días.</p>
+      <div class="from" data-i="from">desde</div><div class="amount">$9,900 MXN</div>
+      <ul>
+        <li data-i="k4_1">Todo lo incluido en el paquete Premium</li>
+        <li data-i="k4_2">Agenda de citas en línea paso a paso</li>
+        <li data-i="k4_3">Confirmación automática para tu cliente</li>
+        <li data-i="k4_4">Panel privado para administrar tus citas</li>
+        <li data-i="k4_5">Capacitación para el uso del sistema</li>
+      </ul>
+      <div class="rounds" data-i="r4">Incluye 3 rondas de ajustes</div>
+    </article>
+  </div>
+  <div class="maint">
+    <div>
+      <h3 data-i="m_h">Mantenimiento mensual (opcional)</h3>
+      <p data-i="m_p">Actualización de contenidos (textos y fotografías), revisión técnica periódica, copias de seguridad y soporte prioritario por WhatsApp.</p>
+    </div>
+    <div class="mamount">$1,000 MXN<small data-i="m_per">al mes, para cualquier paquete</small></div>
+  </div>
+  <p class="note" data-i="pk_n">El dominio y el hosting no están incluidos en los paquetes; te asesoro para contratarlos a tu nombre, de modo que tu sitio sea siempre 100% tuyo.</p>
+  <p class="note" data-i="pk_prices">Los precios pueden variar según las necesidades de cada proyecto. Los importes mostrados son aproximados.</p>
+</div></section>
+
+<section id="proceso"><div class="wrap">
+  <div class="eyebrow" data-i="pr_e">Metodología</div>
+  <h2 data-i="pr_h">Proceso de trabajo</h2>
+  <p class="sub"></p>
+  <div class="steps">
+    <div class="step"><b class="num">1</b><h3 data-i="s1_h">Consulta inicial</h3><p data-i="s1_p">Conversamos por WhatsApp o correo electrónico sobre tu negocio y tus objetivos. Sin costo ni compromiso.</p></div>
+    <div class="step"><b class="num">2</b><h3 data-i="s2_h">Propuesta y anticipo</h3><p data-i="s2_p">Recibes una cotización formal con precio y fecha de entrega. El proyecto inicia con el 50% de anticipo.</p></div>
+    <div class="step"><b class="num">3</b><h3 data-i="s3_h">Diseño y desarrollo</h3><p data-i="s3_p">Construyo tu sitio y te comparto avances para aplicar las rondas de ajustes incluidas en tu paquete.</p></div>
+    <div class="step"><b class="num">4</b><h3 data-i="s4_h">Entrega y publicación</h3><p data-i="s4_p">Tu sitio queda publicado y recibes una capacitación básica para aprovecharlo. El 50% restante se cubre a la entrega.</p></div>
+  </div>
+</div></section>
+
+<section id="sobre-mi"><div class="wrap about">
+  <img src="foto-ariadne.jpg" alt="Ariadne Ceballos">
+  <div>
+    <div class="eyebrow" data-i="ab_e">Sobre mí</div>
+    <h2 data-i="ab_h">Ariadne Ceballos</h2>
+    <p data-i="ab_p1">Soy desarrolladora web y estudiante de la Licenciatura en Ciencias de la Computación. Realicé mis estudios en Canadá y Estados Unidos, una experiencia que me permitió formarme en un entorno bilingüe e internacional.</p>
+    <p data-i="ab_p2">Diseño sitios web que combinan una imagen profesional con funciones prácticas para cada negocio: contacto directo con los clientes, presencia en mapas y sistemas de citas en línea. Atiendo cada proyecto de manera personal, en español e inglés, y trabajo completamente en línea para clientes de cualquier lugar.</p>
+    <div class="chips"><span class="chip">HTML · CSS · JavaScript</span><span class="chip">Python</span><span class="chip">C++</span><span class="chip">Java</span><span class="chip" data-i="ab_c1">Diseño adaptable a dispositivos móviles</span><span class="chip" data-i="ab_c2">Atención bilingüe ES / EN</span></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="eyebrow" data-i="fq_e">Información adicional</div>
+  <h2 data-i="fq_h">Preguntas frecuentes</h2>
+  <p class="sub"></p>
+  <details><summary data-i="faq_q1">¿Cuál es el tiempo de entrega de un sitio web?</summary><p data-i="faq_a1">Depende del paquete contratado: los sitios sencillos requieren pocos días y los sistemas de citas un plazo mayor. Tu cotización incluye la fecha de entrega comprometida.</p></details>
+  <details><summary data-i="faq_q2">¿Qué información necesito proporcionar para iniciar?</summary><p data-i="faq_a2">El nombre y el logotipo de tu negocio (si cuentas con uno), los textos o la información para redactarlos en conjunto, fotografías y tus datos de contacto. Te acompaño durante todo el proceso.</p></details>
+  <details><summary data-i="faq_q3">¿Cómo se realiza el pago?</summary><p data-i="faq_a3">50% de anticipo para iniciar el proyecto y 50% contra entrega, con el sitio ya publicado. El método de pago se acuerda en la cotización.</p></details>
+  <details><summary data-i="faq_q4">¿Puedo solicitar cambios una vez entregado el sitio?</summary><p data-i="faq_a4">Sí. Cada paquete incluye rondas de ajustes durante el desarrollo, y posteriormente puedes contratar el mantenimiento mensual para actualizaciones continuas.</p></details>
+</div></section>
+
+<section id="contacto"><div class="wrap">
+  <div class="contact">
+    <div class="eyebrow" data-i="ct_e">Contacto</div>
+    <h2 data-i="ct_h">Iniciemos tu proyecto</h2>
+    <p class="sub" style="margin:0 auto 28px" data-i="ct_p">Escríbeme por WhatsApp o correo electrónico y recibe tu cotización sin costo ni compromiso.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn" href="https://wa.me/523344750251" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" href="mailto:ariadneceballos.mx@gmail.com" data-i="ct_mail">Enviar correo electrónico</a>
+    </div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap" data-i="ft">© 2026 Ariadne Ceballos · Desarrollo de sitios web para negocios · Atención en español e inglés</div></footer>
+
+<script>
+const T = {
+es:{nav_p:"Proyectos",nav_r:"Reseñas",nav_pk:"Paquetes",nav_pr:"Proceso",nav_a:"Sobre mí",nav_c:"Contacto",
+hero_e:"Diseño y desarrollo de sitios web",hero_h:"Sitios web <span class='g'>profesionales</span> que impulsan la presencia en línea de tu negocio.",hero_p:"Diseño y desarrollo sitios web rápidos, atractivos y fáciles de administrar: catálogo de productos o servicios, contacto directo por WhatsApp, ubicación en el mapa y sistemas de citas en línea. Atención personalizada, completamente en línea.",hero_b1:"Ver paquetes y precios",hero_b2:"Ver proyectos",bd1:"Atención en español e inglés",bd2:"Servicio 100% en línea",bd3:"Cotización sin costo",bd4:"Precios de introducción",
+pj_e:"Portafolio",pj_h:"Proyectos",pj_s:"Proyectos desarrollados que muestran el tipo de soluciones que puedo crear para tu negocio.",p1_h:"Sitio web para cafetería de especialidad",p1_p:"Sitio completo para una cafetería: menú interactivo organizado por categorías, indicador de horario en tiempo real (“Abierto ahora”), contacto directo por WhatsApp, ubicación en el mapa y diseño editorial de alta calidad.",c_menu:"Menú interactivo",c_map:"Mapa",c_open:"Horario en tiempo real",p2_h:"Sitio web para clínica con citas en línea",p2_p:"Sitio para un centro médico con sistema de citas en línea en cuatro pasos, panel privado de administración para el personal, testimonios, sección de preguntas frecuentes y versión completa en inglés.",c_book:"Citas en línea",c_panel:"Panel de administración",c_faq:"Preguntas frecuentes",p3_h:"Aplicación web de finanzas personales",p3_p:"Aplicación con panel de control, gráficas de ingresos y gastos, registro y búsqueda de movimientos, presupuestos, metas de ahorro, exportación de datos y modo oscuro.",c_dash:"Panel de control",c_charts:"Gráficas",c_goals:"Metas de ahorro",c_dark:"Modo oscuro",
+pk_e:"Servicios",pk_h:"Paquetes y precios",pk_s:"Precios de introducción en pesos mexicanos. El precio final se confirma en tu cotización sin costo, de acuerdo con las necesidades de tu negocio.",from:"desde",rec:"Recomendado",k1_h:"BÁSICO",k1_l:"La presencia en línea esencial para dar a conocer tu negocio.",k1_1:"Página con la información de tu negocio",k1_2:"Botón directo a WhatsApp",k1_3:"Mapa con tu ubicación",k1_4:"Horarios y datos de contacto",k1_5:"Diseño atractivo adaptable a celular",r1:"Incluye 1 ronda de ajustes",k2_h:"BÁSICO EXTRA",k2_l:"Una presencia completa que presenta tu oferta y facilita el contacto con tus clientes.",k2_1:"Todo lo incluido en el paquete Básico",k2_2:"Menú o catálogo interactivo por categorías",k2_3:"Galería de fotografías de tu negocio",k2_4:"Indicador de horario en tiempo real (“Abierto ahora”)",k2_5:"Sección con la historia de tu negocio",k2_6:"Enlaces a tus redes sociales",r2:"Incluye 2 rondas de ajustes",k3_l:"Una imagen digital de alto nivel que genera confianza y posiciona tu negocio.",k3_1:"Todo lo incluido en el Básico Extra",k3_2:"Testimonios de tus clientes",k3_3:"Sección de preguntas frecuentes",k3_4:"Formulario de contacto o cotización",k3_5:"Versión en inglés de tu sitio",k3_6:"Detalles de diseño avanzados",r3:"Incluye 3 rondas de ajustes",k4_h:"CON SISTEMA DE CITAS",k4_l:"Automatiza tu agenda: tus clientes reservan en línea las 24 horas, todos los días.",k4_1:"Todo lo incluido en el paquete Premium",k4_2:"Agenda de citas en línea paso a paso",k4_3:"Confirmación automática para tu cliente",k4_4:"Panel privado para administrar tus citas",k4_5:"Capacitación para el uso del sistema",r4:"Incluye 3 rondas de ajustes",m_h:"Mantenimiento mensual (opcional)",m_p:"Actualización de contenidos (textos y fotografías), revisión técnica periódica, copias de seguridad y soporte prioritario por WhatsApp.",m_per:"al mes, para cualquier paquete",pk_n:"El dominio y el hosting no están incluidos en los paquetes; te asesoro para contratarlos a tu nombre, de modo que tu sitio sea siempre 100% tuyo.",pk_prices:"Los precios pueden variar según las necesidades de cada proyecto. Los importes mostrados son aproximados.",
+pr_e:"Metodología",pr_h:"Proceso de trabajo",s1_h:"Consulta inicial",s1_p:"Conversamos por WhatsApp o correo electrónico sobre tu negocio y tus objetivos. Sin costo ni compromiso.",s2_h:"Propuesta y anticipo",s2_p:"Recibes una cotización formal con precio y fecha de entrega. El proyecto inicia con el 50% de anticipo.",s3_h:"Diseño y desarrollo",s3_p:"Construyo tu sitio y te comparto avances para aplicar las rondas de ajustes incluidas en tu paquete.",s4_h:"Entrega y publicación",s4_p:"Tu sitio queda publicado y recibes una capacitación básica para aprovecharlo. El 50% restante se cubre a la entrega.",
+ab_e:"Sobre mí",ab_h:"Ariadne Ceballos",ab_p1:"Soy desarrolladora web y estudiante de la Licenciatura en Ciencias de la Computación. Realicé mis estudios en Canadá y Estados Unidos, una experiencia que me permitió formarme en un entorno bilingüe e internacional.",ab_p2:"Diseño sitios web que combinan una imagen profesional con funciones prácticas para cada negocio: contacto directo con los clientes, presencia en mapas y sistemas de citas en línea. Atiendo cada proyecto de manera personal, en español e inglés, y trabajo completamente en línea para clientes de cualquier lugar.",ab_c1:"Diseño adaptable a dispositivos móviles",ab_c2:"Atención bilingüe ES / EN",
+fq_e:"Información adicional",fq_h:"Preguntas frecuentes",faq_q1:"¿Cuál es el tiempo de entrega de un sitio web?",faq_a1:"Depende del paquete contratado: los sitios sencillos requieren pocos días y los sistemas de citas un plazo mayor. Tu cotización incluye la fecha de entrega comprometida.",faq_q2:"¿Qué información necesito proporcionar para iniciar?",faq_a2:"El nombre y el logotipo de tu negocio (si cuentas con uno), los textos o la información para redactarlos en conjunto, fotografías y tus datos de contacto. Te acompaño durante todo el proceso.",faq_q3:"¿Cómo se realiza el pago?",faq_a3:"50% de anticipo para iniciar el proyecto y 50% contra entrega, con el sitio ya publicado. El método de pago se acuerda en la cotización.",faq_q4:"¿Puedo solicitar cambios una vez entregado el sitio?",faq_a4:"Sí. Cada paquete incluye rondas de ajustes durante el desarrollo, y posteriormente puedes contratar el mantenimiento mensual para actualizaciones continuas.",
+rv_e:"Testimonios",rv_h:"Reseñas de clientes",rv_q1:"“El sitio quedó exactamente como lo imaginé: elegante, rápido, y ahora mis clientes pueden ver el menú y escribirnos por WhatsApp desde la página.”",rv_n1:"Mariana G. · Cafetería, Guadalajara",rv_q2:"“El sistema de citas nos ahorra llamadas todos los días. Los pacientes agendan solos y nosotros solo revisamos el panel.”",rv_n2:"Dr. R. Sandoval · Clínica dental",rv_q3:"“Comunicación clara durante todo el proyecto y entrega en la fecha acordada. La versión en inglés nos ha ayudado con clientes de Estados Unidos.”",rv_n3:"J. Miller · Servicios, Texas",rv_q4:"“Trato profesional y mucha paciencia para explicar cada paso. Con el mantenimiento mensual tenemos el sitio siempre actualizado.”",rv_n4:"Laura P. · Boutique",ct_e:"Contacto",ct_h:"Iniciemos tu proyecto",ct_p:"Escríbeme por WhatsApp o correo electrónico y recibe tu cotización sin costo ni compromiso.",ct_mail:"Enviar correo electrónico",ft:"© 2026 Ariadne Ceballos · Desarrollo de sitios web para negocios · Atención en español e inglés"},
+en:{nav_p:"Projects",nav_r:"Reviews",nav_pk:"Packages",nav_pr:"Process",nav_a:"About me",nav_c:"Contact",
+hero_e:"Website design & development",hero_h:"<span class='g'>Professional</span> websites that strengthen your business's online presence.",hero_p:"I design and develop fast, attractive, easy-to-manage websites: product or service catalogs, direct WhatsApp contact, map location, and online booking systems. Personalized service, fully online.",hero_b1:"See packages & prices",hero_b2:"View projects",bd1:"Service in Spanish & English",bd2:"100% online service",bd3:"Free quote",bd4:"Introductory pricing",
+pj_e:"Portfolio",pj_h:"Projects",pj_s:"Completed projects that show the kind of solutions I can build for your business.",p1_h:"Website for a specialty coffee shop",p1_p:"Complete website for a café: interactive menu organized by category, real-time opening-hours indicator (“Open now”), direct WhatsApp contact, map location, and high-quality editorial design.",c_menu:"Interactive menu",c_map:"Map",c_open:"Real-time hours",p2_h:"Clinic website with online booking",p2_p:"Website for a medical center with a four-step online booking system, a private administration panel for staff, testimonials, an FAQ section, and a full English version.",c_book:"Online booking",c_panel:"Admin panel",c_faq:"FAQ",p3_h:"Personal finance web application",p3_p:"Application with a control dashboard, income and expense charts, transaction records and search, budgets, savings goals, data export, and dark mode.",c_dash:"Dashboard",c_charts:"Charts",c_goals:"Savings goals",c_dark:"Dark mode",
+pk_e:"Services",pk_h:"Packages & prices",pk_s:"Introductory prices in Mexican pesos (MXN). Your final price is confirmed in your free quote, according to your business's needs.",from:"from",rec:"Recommended",k1_h:"BASIC",k1_l:"The essential online presence to introduce your business.",k1_1:"A page with your business information",k1_2:"Direct WhatsApp button",k1_3:"Map with your location",k1_4:"Opening hours and contact details",k1_5:"Attractive design that adapts to mobile phones",r1:"Includes 1 round of revisions",k2_h:"BASIC EXTRA",k2_l:"A complete presence that showcases your offering and makes it easy for customers to reach you.",k2_1:"Everything included in the Basic package",k2_2:"Interactive menu or catalog by category",k2_3:"Photo gallery of your business",k2_4:"Real-time opening-hours indicator (“Open now”)",k2_5:"A section with your business's story",k2_6:"Links to your social media",r2:"Includes 2 rounds of revisions",k3_l:"A high-level digital image that builds trust and positions your business.",k3_1:"Everything included in Basic Extra",k3_2:"Customer testimonials",k3_3:"FAQ section",k3_4:"Contact or quote form",k3_5:"English version of your website",k3_6:"Advanced design details",r3:"Includes 3 rounds of revisions",k4_h:"WITH BOOKING SYSTEM",k4_l:"Automate your schedule: your customers book online 24 hours a day, every day.",k4_1:"Everything included in the Premium package",k4_2:"Step-by-step online appointment booking",k4_3:"Automatic confirmation for your customer",k4_4:"Private panel to manage your appointments",k4_5:"Training on how to use the system",r4:"Includes 3 rounds of revisions",m_h:"Monthly maintenance (optional)",m_p:"Content updates (text and photographs), periodic technical review, backups, and priority support via WhatsApp.",m_per:"per month, for any package",pk_n:"Domain and hosting are not included in the packages; I can guide you through purchasing them in your own name, so your website remains yours.",pk_prices:"Prices may vary depending on each project’s needs. The amounts shown are estimates.",
+pr_e:"Methodology",pr_h:"Work process",s1_h:"Initial consultation",s1_p:"We talk via WhatsApp or email about your business and your goals. Free of charge and with no obligation.",s2_h:"Proposal & deposit",s2_p:"You receive a formal quote with the price and delivery date. The project starts with a 50% deposit.",s3_h:"Design & development",s3_p:"I build your website and share progress so we can apply the revision rounds included in your package.",s4_h:"Delivery & launch",s4_p:"Your website goes live and you receive basic training to make the most of it. The remaining 50% is due upon delivery.",
+ab_e:"About me",ab_h:"Ariadne Ceballos",ab_p1:"I am a web developer and a Bachelor's student in Computer Science. I completed my studies in Canada and the United States, an experience that allowed me to train in a bilingual, international environment.",ab_p2:"I design websites that combine a professional image with practical features for each business: direct customer contact, map presence, and online booking systems. I personally handle every project, in Spanish and English, and I work fully online for clients anywhere.",ab_c1:"Design adaptable to mobile devices",ab_c2:"Bilingual service ES / EN",
+fq_e:"Additional information",fq_h:"Frequently asked questions",faq_q1:"What is the delivery time for a website?",faq_a1:"It depends on the package: simple websites require a few days, while booking systems take longer. Your quote includes the committed delivery date.",faq_q2:"What information do I need to provide to get started?",faq_a2:"Your business name and logo (if you have one), the texts or the information to write them together, photographs, and your contact details. I accompany you throughout the entire process.",faq_q3:"How is payment made?",faq_a3:"50% deposit to start the project and 50% upon delivery, with the website already published. The payment method is agreed upon in the quote.",faq_q4:"Can I request changes after the website is delivered?",faq_a4:"Yes. Each package includes revision rounds during development, and afterwards you can contract monthly maintenance for ongoing updates.",
+rv_e:"Testimonials",rv_h:"Client reviews",rv_q1:"“The website turned out exactly as I imagined: elegant, fast, and now my customers can view the menu and message us on WhatsApp right from the page.”",rv_n1:"Mariana G. · Coffee shop, Guadalajara",rv_q2:"“The booking system saves us phone calls every day. Patients book on their own and we just check the panel.”",rv_n2:"Dr. R. Sandoval · Dental clinic",rv_q3:"“Clear communication throughout the project and delivery on the agreed date. The English version has helped us with clients from the United States.”",rv_n3:"J. Miller · Services, Texas",rv_q4:"“Professional service and great patience explaining every step. With the monthly maintenance, our site is always up to date.”",rv_n4:"Laura P. · Boutique",ct_e:"Contact",ct_h:"Let's start your project",ct_p:"Message me on WhatsApp or by email and receive your quote free of charge and with no obligation.",ct_mail:"Send email",ft:"© 2026 Ariadne Ceballos · Website development for businesses · Service in Spanish & English"}
+};
+let lang = "es";
+const langBtn = document.getElementById("langBtn");
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i]").forEach(el=>{ const k = el.getAttribute("data-i"); if(T[l][k]) el.innerHTML = T[l][k]; });
+  langBtn.textContent = l === "es" ? "EN" : "ES";
+  try{ localStorage.setItem("pf-lang", l); }catch(e){}
+}
+langBtn.addEventListener("click", ()=> setLang(lang === "es" ? "en" : "es"));
+const themeBtn = document.getElementById("themeBtn");
+function setTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  themeBtn.textContent = t === "dark" ? "☀" : "☾";
+  try{ localStorage.setItem("pf-theme", t); }catch(e){}
+}
+themeBtn.addEventListener("click", ()=>{
+  setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+});
+try{
+  const sl = localStorage.getItem("pf-lang"); if(sl) setLang(sl);
+  const st = localStorage.getItem("pf-theme"); if(st) setTheme(st); else setTheme("dark");
+}catch(e){ setTheme("dark"); }
+// Menú móvil accesible
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+if(menuToggle && mainNav){
+  menuToggle.addEventListener("click",()=>{
+    const open = mainNav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded",String(open));
+    menuToggle.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú");
+    menuToggle.textContent = open ? "×" : "☰";
+  });
+  mainNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
+    mainNav.classList.remove("open"); menuToggle.setAttribute("aria-expanded","false");
+    menuToggle.setAttribute("aria-label","Abrir menú"); menuToggle.textContent="☰";
+  }));
+}
+// Entrada progresiva al aparecer en pantalla
+const revealItems = document.querySelectorAll("section > .wrap > *, .project-card, .step, .rev, .price, .about > *");
+revealItems.forEach(el=>el.classList.add("reveal"));
+if("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target);}
+  }),{threshold:.12,rootMargin:"0px 0px -35px 0px"});
+  revealItems.forEach(el=>observer.observe(el));
+}else{revealItems.forEach(el=>el.classList.add("is-visible"));}
+</script>
+</body>
+</html>
